@@ -1,0 +1,137 @@
+@import '../../../../style/vars.less';
+
+.performer-calendar {
+  margin: auto;
+  max-width: 860px;
+  background-color: @dark-gray3;
+  .ant-picker-calendar-mode-switch {
+    display: none;
+  }
+  .ant-picker-cell:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner, .ant-picker-cell:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner {
+    background-color: #3e3e3e ;
+    color: #fff;
+  }
+}
+.ant-picker-calendar-header {
+  margin-right: 10px;
+  background-color: @dark-gray3;
+
+  .ant-select-arrow {
+    color: @white;
+  }
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    background-color: #3e3e3e;
+  }
+}
+
+.ant-picker-body {
+  background-color: @dark-gray3;
+}
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-body th {
+  color: @white;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-value {
+  color: @white;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-content {
+  height: 45px;
+  ul.events {
+    padding: 0;
+    max-height: 100%;
+    overflow: auto;
+    margin: 0;
+
+    li {
+      padding-left: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      position: relative;
+
+      &::before {
+        content: '';
+        width: 5px;
+        height: 5px;
+        position: absolute;
+        left: 0;
+        top: 7px;
+        border-radius: 50%;
+      }
+
+      &.success {
+        &::before {
+          background-color: @success-color;
+        }
+      }
+
+      &.error {
+        &::before {
+          background-color: @highlight-color;
+        }
+      }
+    }
+  }
+}
+
+.ant-picker-cell-in-view:not(.ant-picker-cell-disabled)>.ant-picker-cell-inner {
+  border-color: @primary-color!important;
+
+  // &:hover {
+  //   color: @black;
+  // }
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-disabled>.ant-picker-cell-inner {
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell .ant-picker-time-panel-cell-inner {
+  // color: black;
+}
+
+.schedule-modal-wrapper {
+  .ant-modal-content {
+    // background: @white  !important;
+
+
+
+    .btn-mobile {
+      display: none;
+    }
+    .ant-form-item {
+      margin-bottom: 0;
+    }
+    .ant-input-number,
+    .ant-input {
+      background-color: #333333  !important;
+      // color: black;
+    }
+
+    input {
+      // color: black;
+    }
+    
+  }
+
+  @media screen and(max-width: @mobile-screen) {
+    .ant-modal-content {
+      .ant-row {
+        .ant-col {
+          display: block;
+
+          .btn-desktop {
+            display: none;
+          }
+
+          .anticon-ellipsis,
+          .btn-mobile,
+          .anticon-more {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@import '../../../style/vars.less';
+
+.messenger {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 200px);
+  position: relative;
+}
+
+.scrollable {
+  position: relative;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sidebar {
+  display: flex;
+  width: 40%;
+  .conversation-list {
+    background: @black;
+    .conversation-title, .conversation-snippet {
+      color: #666;
+    }
+  }
+}
+
+.chat-content {
+  background: #1b1b1b;
+  display: flex;
+  width: 60%;
+  position: relative;
+  padding-top: 50px;
+  padding-bottom:50px ;
+  .mess-recipient {
+    padding: 10px;
+    color: #fff;
+    border-bottom:1px solid #323232;
+    background:transparent;
+  }
+  .message {
+    .bubble {
+      color: #ffffff !important;
+      background: #313131 !important;
+    }
+    .timestamp {
+      color: @white;
+      font-size: 10px;
+    }
+  }
+  .compose {
+    .grp-send {
+      border-radius: 5px;
+    }
+  }
+}
+
+.footer {
+  background: @white;
+}
+
+@media all and (max-width: @mobile-screen) {
+  .sidebar {
+    width: 100%;
+  }
+  .sidebar.active {
+    display: none;
+  }
+  .chat-content {
+    width: 100%;
+    display: none;
+  }
+  .chat-content.active {
+    display: flex;
+  }
+}

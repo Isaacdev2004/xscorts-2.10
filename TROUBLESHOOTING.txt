@@ -1,0 +1,94 @@
+================================================================================
+                    SITE CAN'T BE REACHED - FIX GUIDE
+================================================================================
+
+PROBLEM:
+--------
+The browser says "This site can't be reached" when trying to access
+http://localhost:8081 or http://localhost:8082
+
+REASON:
+-------
+MongoDB is not running, so the backend can't start properly.
+
+================================================================================
+
+QUICK FIX:
+---------
+
+Option 1: Use the Fix Script (Easiest)
+  1. Right-click: FIX-CONNECTION-ISSUE.bat
+  2. Choose: "Run as Administrator"
+  3. Follow the prompts
+  4. Wait 30-60 seconds
+  5. Try the website again
+
+Option 2: Start MongoDB Manually
+  1. Press Windows + R
+  2. Type: services.msc
+  3. Press Enter
+  4. Find "MongoDB" in the list
+  5. Right-click → Start
+  6. Wait 10 seconds
+  7. Restart the application windows (close and reopen them)
+
+Option 3: Find MongoDB Installation
+  1. Check: C:\Program Files\MongoDB\
+  2. Look for folders like: Server\7.0\bin or Server\6.0\bin
+  3. Run: mongod.exe from that folder
+  4. Keep that window open
+  5. Restart application windows
+
+================================================================================
+
+HOW TO RESTART APPLICATION:
+---------------------------
+
+1. Close all 3 application windows (API, User, Admin)
+2. Double-click: START-ALL.bat
+3. Wait 30-60 seconds
+4. Try the website again
+
+================================================================================
+
+CHECK IF IT'S WORKING:
+----------------------
+
+After starting MongoDB:
+
+1. Wait 30 seconds
+2. Open browser
+3. Go to: http://localhost:8081
+4. If it loads → SUCCESS! ✓
+5. If still can't reach → Check application windows for errors
+
+================================================================================
+
+COMMON ERRORS IN APPLICATION WINDOWS:
+--------------------------------------
+
+Error: "MongoServerError: connect ECONNREFUSED"
+  → MongoDB is not running - Start it!
+
+Error: "MongooseServerSelectionError"
+  → MongoDB is not accessible - Check if it's running
+
+Error: "Port 8080 already in use"
+  → Another program is using the port - Close it
+
+Error: "Cannot find module..."
+  → Dependencies not installed - Run: npm install
+
+================================================================================
+
+STILL NOT WORKING?
+------------------
+
+1. Check all 3 application windows for error messages
+2. Make sure MongoDB is actually running (check Windows Services)
+3. Make sure Redis is running (should be fine)
+4. Try restarting your computer
+5. Make sure no antivirus is blocking the ports
+
+================================================================================
+

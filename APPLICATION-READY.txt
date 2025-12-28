@@ -1,0 +1,84 @@
+================================================================================
+                    ✅ APPLICATION IS STARTING!
+================================================================================
+
+ALL SERVICES HAVE BEEN STARTED:
+--------------------------------
+
+✓ API Backend: Starting on port 8080
+✓ User Frontend: Starting on port 8081
+✓ Admin Frontend: Starting on port 8082
+
+Three command windows have opened. Keep them open!
+
+================================================================================
+
+WHAT TO DO NOW:
+---------------
+
+1. WAIT 30-60 SECONDS
+   The application is compiling and starting.
+   First startup takes longer.
+
+2. CHECK THE WINDOWS
+   Look for messages like:
+   - "listening on port 8080" (API)
+   - "ready on http://localhost:8081" (User)
+   - "ready on http://localhost:8082" (Admin)
+
+3. OPEN YOUR BROWSER
+   After waiting, try:
+   
+   → User Site:    http://localhost:8081
+   → Admin Panel:  http://localhost:8082
+
+4. IF IT DOESN'T WORK
+   - Wait a bit longer (compilation takes time)
+   - Check the windows for error messages
+   - Make sure MongoDB is running
+   - Make sure Redis is running
+
+================================================================================
+
+QUICK STATUS CHECK:
+-------------------
+
+To check if services are running, open PowerShell and run:
+
+Test-NetConnection localhost -Port 8080
+Test-NetConnection localhost -Port 8081
+Test-NetConnection localhost -Port 8082
+
+If "TcpTestSucceeded : True" = Service is running! ✓
+
+================================================================================
+
+FIRST TIME SETUP (If needed):
+------------------------------
+
+If this is your first time, you may need to run database migrations:
+
+1. Open a new PowerShell window
+2. cd C:\Users\HP\Downloads\xscorts-2.1.0\xscorts-2.1.0\api
+3. npm run migrate
+
+This creates the admin user:
+  - Email: admin@localhost
+  - Username: admin
+
+================================================================================
+
+SUCCESS INDICATORS:
+-------------------
+
+✓ All 3 windows are open
+✓ No error messages in the windows
+✓ Browser can access http://localhost:8081
+✓ Browser can access http://localhost:8082
+
+================================================================================
+
+The application is starting now. Just wait and then try the URLs!
+
+================================================================================
+

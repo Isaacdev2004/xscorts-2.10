@@ -1,0 +1,78 @@
+# Environment files (sensitive)
+.env
+.env.local
+.env.production
+.env.development
+**/.env
+**/.env.local
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+**/dist/
+build/
+**/build/
+.next/
+**/.next/
+out/
+**/out/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+logs/
+**/logs/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+.project
+.classpath
+.settings/
+
+# Test coverage
+coverage/
+.nyc_output/
+**/coverage/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+**/.cache/
+
+# Database dumps
+*.rdb
+dump.rdb
+**/dump.rdb
+
+# Windows specific
+desktop.ini
+
+# MacOS specific
+.AppleDouble
+.LSOverride
+
+# Package manager locks (optional - some prefer to commit these)
+# yarn.lock
+# package-lock.json

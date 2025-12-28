@@ -1,0 +1,104 @@
+@import '../../../style/vars.less';
+
+.ant-select-selection-item {
+  margin: auto;
+}
+.btn-submit {
+  margin: 0px !important;
+  background: @primary-color !important;
+  width: 100%;
+  color: black !important;
+  font-weight: 600;
+  margin-top: 10px !important;
+  border-color: @primary-color;
+}
+
+#nest-messages {
+  background-color: @black;
+  border-radius: 5px;
+  min-height: 400px;
+  .ant-row {
+    margin: 0px;
+    padding: 10px;
+    .ctl-input-password {
+      border-radius: 5px;
+      background-color: @main-background-color;
+    }
+    .ant-input {
+      background-color: @main-background-color;
+    }
+  }
+}
+.ant-table {
+  .anticon-delete {
+    color: #fff;
+    svg {
+      font-size: medium;
+    }
+  }
+}
+.model-edit-profile-layout {
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+  .ant-upload.ant-upload-drag {
+    background-color: #242424;
+    color: #fff;
+  }
+  .ant-upload.ant-upload-drag p {
+    color: #fff !important;
+  }
+  .ant-upload-list-item-info {
+    background-color: transparent !important;
+    
+  }
+  .ant-upload-list-item-info .anticon-loading .anticon, .ant-upload-list-item-info .ant-upload-text-icon .anticon {
+    color: #fff !important;
+  }
+  .ant-btn-icon-only.ant-btn-sm {
+    color: #fff !important;
+  }
+}
+
+@media screen and (max-width: @mobile-screen) {
+  .model-edit-profile-layout {
+    margin-top: 70px;
+    .ant-row {
+      margin: 0 !important;
+      display: block;
+      .ant-col {
+        display: contents;
+        .ant-tabs-nav-wrap {
+          margin-left: 10px;
+        }
+        .ant-btn {
+          margin: 5px 0px;
+          background: yellow;
+          color: black;
+        }
+        .related {
+          width: 90%;
+          margin-left: 5%;
+        }
+        .ant-select {
+          .ant-select-arrow {
+            color: #666;
+          }
+        }
+        .ant-input-number {
+          width: 80%;
+          margin-bottom: 10px;
+        }
+        .view-profile {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: @tablet-screen) {
+  .ant-tabs > .ant-tabs-nav .ant-tabs-nav-list {
+      margin-left: 10px;
+  }
+}

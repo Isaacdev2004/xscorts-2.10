@@ -1,0 +1,107 @@
+================================================================================
+  SIMPLE GUIDE TO START YOUR APPLICATION
+================================================================================
+
+STEP 1: Start MongoDB
+---------------------
+1. Double-click: START-MONGODB.bat
+2. If it says "MongoDB started successfully" - you're done!
+3. If it says "MongoDB not found" - you need to install it first (see below)
+
+STEP 2: Start Redis  
+---------------------
+1. Double-click: START-REDIS.bat
+2. If it says "Redis started successfully" - you're done!
+3. If it says "Redis not found" - you need Docker or Redis (see below)
+
+STEP 3: Check Status
+---------------------
+1. Double-click: CHECK-STATUS.bat
+2. You should see:
+   ✓ MongoDB is RUNNING
+   ✓ Redis is RUNNING
+3. If both show ✓, you can start the application!
+
+STEP 4: Start the Application
+------------------------------
+Open 3 separate PowerShell windows (or Command Prompt):
+
+Window 1 - API Backend:
+  cd xscorts-2.1.0\api
+  npm run start:dev
+
+Window 2 - User Frontend:
+  cd xscorts-2.1.0\user
+  npm run dev
+
+Window 3 - Admin Frontend:
+  cd xscorts-2.1.0\admin
+  npm run dev
+
+Then open your browser:
+- User site: http://localhost:8081
+- Admin panel: http://localhost:8082
+
+================================================================================
+  IF YOU NEED TO INSTALL MONGODB
+================================================================================
+
+1. Go to: https://www.mongodb.com/try/download/community
+2. Click "Download" for Windows
+3. Run the installer
+4. IMPORTANT: During installation, check "Install MongoDB as a Service"
+5. Complete the installation
+6. Run START-MONGODB.bat again
+
+================================================================================
+  IF YOU NEED TO INSTALL REDIS (Choose ONE option)
+================================================================================
+
+OPTION 1 - Docker (Easiest):
+1. Go to: https://www.docker.com/products/docker-desktop
+2. Download Docker Desktop for Windows
+3. Install and start Docker Desktop
+4. Run START-REDIS.bat again
+
+OPTION 2 - Redis for Windows:
+1. Go to: https://github.com/tporadowski/redis/releases
+2. Download the latest redis-x64-xxx.zip file
+3. Extract the zip file
+4. Run redis-server.exe from the extracted folder
+5. Keep that window open (Redis needs to keep running)
+
+================================================================================
+  TROUBLESHOOTING
+================================================================================
+
+Problem: "MongoDB not found"
+Solution: Install MongoDB (see above)
+
+Problem: "Redis not found"  
+Solution: Install Docker or Redis (see above)
+
+Problem: "Port already in use"
+Solution: Another program is using that port. Close other applications.
+
+Problem: "Permission denied"
+Solution: Right-click the .bat file and choose "Run as Administrator"
+
+Problem: Services won't start
+Solution: 
+1. Right-click START-MONGODB.bat → Run as Administrator
+2. Right-click START-REDIS.bat → Run as Administrator
+
+================================================================================
+  QUICK CHECKLIST
+================================================================================
+
+□ MongoDB is running (check with CHECK-STATUS.bat)
+□ Redis is running (check with CHECK-STATUS.bat)
+□ API Backend is running (Window 1)
+□ User Frontend is running (Window 2)
+□ Admin Frontend is running (Window 3)
+□ Can access http://localhost:8081 (User site)
+□ Can access http://localhost:8082 (Admin panel)
+
+================================================================================
+

@@ -1,0 +1,163 @@
+@import '../../../../style/vars';
+
+.age-verification-modal {
+  .ant-modal-content {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 2px solid @primary-color;
+    box-shadow: 0 0 20px rgba(238, 189, 34, 0.5);
+  }
+
+  .ant-modal-body {
+    padding: 30px;
+  }
+
+  .age-verification-content {
+    color: @white;
+
+    .modal-title {
+      color: @primary-color;
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(238, 189, 34, 0.5);
+    }
+
+    .modal-warning {
+      background: rgba(238, 189, 34, 0.1);
+      border: 1px solid @primary-color;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 25px;
+
+      p {
+        color: @white;
+        margin: 0;
+        line-height: 1.6;
+
+        strong {
+          color: @primary-color;
+        }
+      }
+    }
+
+    .modal-checkboxes {
+      margin-bottom: 25px;
+
+      .checkbox-item {
+        margin-bottom: 15px;
+
+        .ant-checkbox-wrapper {
+          display: flex;
+          align-items: flex-start;
+          color: @white;
+
+          .ant-checkbox {
+            .ant-checkbox-inner {
+              border-color: @primary-color;
+              background-color: transparent;
+
+              &:after {
+                border-color: @primary-color;
+              }
+            }
+
+            &.ant-checkbox-checked {
+              .ant-checkbox-inner {
+                background-color: @primary-color;
+                border-color: @primary-color;
+              }
+            }
+          }
+
+          .checkbox-label {
+            color: @white;
+            line-height: 1.6;
+            margin-left: 8px;
+
+            .link-neon {
+              color: @primary-color;
+              text-decoration: none;
+              font-weight: 600;
+              transition: all 0.3s;
+              text-shadow: 0 0 5px rgba(238, 189, 34, 0.3);
+
+              &:hover {
+                color: @secondary-color;
+                text-shadow: 0 0 10px rgba(232, 196, 0, 0.6);
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+
+      .btn-neon-primary {
+        background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+        border: none;
+        color: @black;
+        font-weight: 700;
+        text-transform: uppercase;
+        box-shadow: 0 0 15px rgba(238, 189, 34, 0.4);
+        transition: all 0.3s;
+
+        &:hover:not(:disabled) {
+          background: linear-gradient(135deg, @secondary-color 0%, @primary-color 100%);
+          box-shadow: 0 0 25px rgba(238, 189, 34, 0.6);
+          transform: translateY(-2px);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+
+      .btn-neon-secondary {
+        background: transparent;
+        border: 2px solid @primary-color;
+        color: @primary-color;
+        font-weight: 600;
+        transition: all 0.3s;
+
+        &:hover {
+          background: rgba(238, 189, 34, 0.1);
+          border-color: @secondary-color;
+          color: @secondary-color;
+          box-shadow: 0 0 15px rgba(238, 189, 34, 0.3);
+        }
+      }
+    }
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .age-verification-modal {
+    .ant-modal {
+      width: 90% !important;
+      max-width: 500px;
+    }
+
+    .age-verification-content {
+      .modal-title {
+        font-size: 20px;
+      }
+
+      .modal-actions {
+        flex-direction: column;
+
+        .ant-btn {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+

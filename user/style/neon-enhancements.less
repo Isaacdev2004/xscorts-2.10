@@ -1,0 +1,132 @@
+@import './vars';
+
+// Neon color enhancements for buttons, links, and highlights
+// Applied consistently across the site
+
+// Primary neon button styles
+.btn-neon-primary,
+.ant-btn-primary,
+.ant-btn.primary {
+  background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+  border: none;
+  color: @black;
+  font-weight: 600;
+  box-shadow: 0 0 15px rgba(238, 189, 34, 0.4);
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, @secondary-color 0%, @primary-color 100%);
+    box-shadow: 0 0 25px rgba(238, 189, 34, 0.6);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 0 15px rgba(238, 189, 34, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Neon link styles
+a.link-neon,
+.link-neon {
+  color: @primary-color;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(238, 189, 34, 0.3);
+
+  &:hover {
+    color: @secondary-color;
+    text-shadow: 0 0 10px rgba(232, 196, 0, 0.6);
+    text-decoration: underline;
+  }
+}
+
+// Neon highlight styles
+.highlight-neon {
+  color: @primary-color;
+  text-shadow: 0 0 8px rgba(238, 189, 34, 0.5);
+  font-weight: 600;
+}
+
+// Neon border/outline styles
+.border-neon {
+  border: 2px solid @primary-color;
+  box-shadow: 0 0 10px rgba(238, 189, 34, 0.3);
+}
+
+// Neon background accents
+.bg-neon-accent {
+  background: rgba(238, 189, 34, 0.1);
+  border: 1px solid @primary-color;
+  box-shadow: 0 0 15px rgba(238, 189, 34, 0.2);
+}
+
+// Apply to common link elements
+a {
+  &.ant-btn-link {
+    color: @primary-color;
+    text-shadow: 0 0 5px rgba(238, 189, 34, 0.3);
+
+    &:hover {
+      color: @secondary-color;
+      text-shadow: 0 0 10px rgba(232, 196, 0, 0.6);
+    }
+  }
+}
+
+// Header links
+.header-link {
+  color: @primary-color;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: @secondary-color;
+    text-shadow: 0 0 8px rgba(232, 196, 0, 0.5);
+  }
+}
+
+// Footer links
+.footer-link {
+  a {
+    color: @primary-color;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: @secondary-color;
+      text-shadow: 0 0 8px rgba(232, 196, 0, 0.5);
+    }
+  }
+}
+
+// Search filter buttons
+.filter-main {
+  .ant-btn-primary {
+    background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+    border: none;
+    box-shadow: 0 0 15px rgba(238, 189, 34, 0.4);
+
+    &:hover {
+      box-shadow: 0 0 25px rgba(238, 189, 34, 0.6);
+    }
+  }
+}
+
+// Language switcher enhancements
+.language-switcher {
+  a {
+    color: @primary-color;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: @secondary-color;
+      text-shadow: 0 0 5px rgba(232, 196, 0, 0.5);
+    }
+  }
+}
+

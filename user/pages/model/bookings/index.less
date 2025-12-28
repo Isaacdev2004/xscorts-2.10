@@ -1,0 +1,52 @@
+@import '../../../style/vars.less';
+
+.title-bookings {
+  padding-left: 10px;
+}
+
+.ant-breadcrumb {
+  span {
+    color: @white;
+    .anticon {
+      &:hover {
+        color: @primary-color;
+      }
+    }
+  }
+  a {
+    color: @white;
+  }
+}
+
+.contentInner {
+  background-color: #000;
+  .ant-descriptions-title {
+    color: #fff;
+  }
+  .ant-descriptions-item-label {
+    color: #fff;
+  }
+  .ant-descriptions-item-content {
+    color: #fff;
+  }
+  .table-responsive {
+    .ant-select {
+      width: 100%;
+      background: @grey-color;
+      border-radius: 5px;
+      border: 1px solid @grey-color;
+      .ant-select-selector {
+        background: @grey-color;
+      }
+      .ant-select-arrow {
+        color: @white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: @mobile-screen) {
+  .ant-breadcrumb {
+    margin-left: 10px;
+  }
+}
