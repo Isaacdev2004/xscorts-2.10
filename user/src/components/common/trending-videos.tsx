@@ -1,22 +1,32 @@
 import React, { PureComponent } from 'react';
 import { Spin } from 'antd';
 import Link from 'next/link';
-import { performerService } from '@services/index';
+import { videoService } from '@services/index';
 import './trending-videos.less';
 
 interface Video {
   _id: string;
   title: string;
   thumbnail: string;
-  duration: number;
-  performer: {
+  duration?: number;
+  performer?: {
     name: string;
     username: string;
     avatar: string;
     gender: string;
-    age: number;
+    age?: number;
   };
-  views: number;
+  performers?: Array<{
+    name: string;
+    username: string;
+    avatar: string;
+    gender: string;
+    age?: number;
+  }>;
+  stats?: {
+    views: number;
+  };
+  views?: number;
   createdAt: string;
 }
 
@@ -48,30 +58,31 @@ class TrendingVideos extends PureComponent<IProps, IState> {
 
   fetchTrendingVideos = async () => {
     try {
-      // Fetch performers with videos - you may need to adjust this based on your API
-      const response = await performerService.search({
+      const response = await videoService.search({
         limit: this.props.limit || 5,
-        sort: 'trending', // or 'views' or 'createdAt'
-        hasVideo: true
+        sort: 'desc',
+        sortBy: 'createdAt',
+        offset: 0
       });
 
-      // Transform data to video format
-      // Note: This is a placeholder - adjust based on your actual API response
-      const videos = response.data?.data?.slice(0, this.props.limit || 5).map((performer: any) => ({
-        _id: performer._id,
-        title: performer.latestVideo?.title || `${performer.name}'s Video`,
-        thumbnail: performer.latestVideo?.thumbnail || performer.avatar,
-        duration: performer.latestVideo?.duration || 0,
-        performer: {
-          name: performer.name,
-          username: performer.username,
-          avatar: performer.avatar,
-          gender: performer.gender,
-          age: performer.age
-        },
-        views: performer.latestVideo?.views || 0,
-        createdAt: performer.latestVideo?.createdAt || performer.createdAt
-      })) || [];
+      const videos = response.data?.data?.map((video: any) => {
+        const performer = video.performers?.[0] || {};
+        return {
+          _id: video._id,
+          title: video.title || 'Untitled Video',
+          thumbnail: video.thumbnail || '/no-image.jpg',
+          duration: video.video?.duration || 0,
+          performer: {
+            name: performer.name || 'Unknown',
+            username: performer.username || '',
+            avatar: performer.avatar || '/no-avatar.png',
+            gender: performer.gender || 'female',
+            age: performer.age
+          },
+          views: video.stats?.views || video.views || 0,
+          createdAt: video.createdAt || new Date().toISOString()
+        };
+      }) || [];
 
       this.setState({ videos, loading: false });
     } catch (error) {

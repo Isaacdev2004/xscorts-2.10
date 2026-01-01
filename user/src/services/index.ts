@@ -19,3 +19,4 @@ export * from './schedule.service';
 export * from './message.service';
 export * from './abuse-report.service';
 export * from './favorite-service';
+export * from './video.service';
