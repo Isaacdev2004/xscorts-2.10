@@ -9,18 +9,17 @@ interface QuickLink {
 }
 
 const quickLinks: QuickLink[] = [
+  { label: 'Home', path: '/home', query: {} },
+  { label: 'Alle categorieën', path: '/search', query: {} },
   { label: 'Vrouwen', path: '/search', query: { gender: 'female' } },
   { label: 'Mannen', path: '/search', query: { gender: 'male' } },
   { label: 'Stellen', path: '/search', query: { gender: 'couple' } },
   { label: 'Shemales', path: '/search', query: { gender: 'transgender' } },
-  { label: 'Gay', path: '/search', query: { category: 'gay' } },
-  { label: 'BDSM Sex', path: '/search', query: { category: 'bdsm' } },
-  { label: 'Virtual Sex', path: '/search', query: { category: 'virtual' } },
-  { label: 'Club', path: '/search', query: { category: 'club' } },
-  { label: 'Privehuis', path: '/search', query: { category: 'privehuis' } },
-  { label: 'Escortbureau', path: '/search', query: { category: 'escortbureau' } },
-  { label: 'SM Studio\'s', path: '/search', query: { category: 'sm-studio' } },
-  { label: 'Massage Salon', path: '/search', query: { category: 'massage' } }
+  { label: 'Seksbedrijven', path: '/search', query: { service: 'business' } },
+  { label: 'Type Date', path: '/search', query: {} },
+  { label: 'Login', path: '/auth/login', query: {} },
+  { label: 'Registreren', path: '/auth/user-register', query: {} },
+  { label: 'Support', path: '/hulp-en-ondersteuning', query: {} }
 ];
 
 const QuickLinksSidebar: React.FC = () => {

@@ -161,6 +161,23 @@ const Footer = ({ menus = [], loggedIn = false, ui = {} }: IProps) => {
           </span>
         </div>
       )}
+      {/* Privacy and Support buttons at bottom */}
+      <div className="footer-bottom-buttons">
+        <div className="main-container">
+          <Row justify="center" gutter={[16, 16]}>
+            <Col>
+              <Link href="/page/privacy-policy">
+                <a className="footer-bottom-link">Privacy</a>
+              </Link>
+            </Col>
+            <Col>
+              <Link href="/hulp-en-ondersteuning">
+                <a className="footer-bottom-link">Support</a>
+              </Link>
+            </Col>
+          </Row>
+        </div>
+      </div>
     </div>
   );
 };

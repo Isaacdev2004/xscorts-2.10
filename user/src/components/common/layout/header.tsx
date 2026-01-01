@@ -559,13 +559,65 @@ class Header extends PureComponent<IProps> {
             openMenu ? 'nav-links nav-icons m-menu-open' : 'nav-links nav-icons'
           }
         >
-          {/* Alle categorieën Dropdown */}
-          <li key="alle-categorieen">
-            <Dropdown overlay={categoriesMenuItems} placement="bottomLeft">
-              <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                Alle categorieën
+          {/* Home */}
+          <li key="home">
+            <Link href="/home">
+              <a>
+                <span className={this.checkActiveMenu('/home') ? 'active' : ''}>
+                  Home
+                </span>
               </a>
-            </Dropdown>
+            </Link>
+          </li>
+          {/* Vrouwen */}
+          <li key="vrouwen">
+            <Link href="/search?gender=female">
+              <a>
+                <span className={this.checkActiveMenu('/search?gender=female') ? 'active' : ''}>
+                  Vrouwen
+                </span>
+              </a>
+            </Link>
+          </li>
+          {/* Mannen */}
+          <li key="mannen">
+            <Link href="/search?gender=male">
+              <a>
+                <span className={this.checkActiveMenu('/search?gender=male') ? 'active' : ''}>
+                  Mannen
+                </span>
+              </a>
+            </Link>
+          </li>
+          {/* Stellen */}
+          <li key="stellen">
+            <Link href="/search?gender=couple">
+              <a>
+                <span className={this.checkActiveMenu('/search?gender=couple') ? 'active' : ''}>
+                  Stellen
+                </span>
+              </a>
+            </Link>
+          </li>
+          {/* Shemales */}
+          <li key="shemales">
+            <Link href="/search?gender=transgender">
+              <a>
+                <span className={this.checkActiveMenu('/search?gender=transgender') ? 'active' : ''}>
+                  Shemales
+                </span>
+              </a>
+            </Link>
+          </li>
+          {/* Seksbedrijven */}
+          <li key="seksbedrijven">
+            <Link href="/search?service=business">
+              <a>
+                <span className={this.checkActiveMenu('/search?service=business') ? 'active' : ''}>
+                  Seksbedrijven
+                </span>
+              </a>
+            </Link>
           </li>
           {/* Type Date Dropdown */}
           <li key="type-date">
@@ -575,20 +627,36 @@ class Header extends PureComponent<IProps> {
               </a>
             </Dropdown>
           </li>
-          {/* Overig Dropdown */}
-          <li key="overig">
-            <Dropdown overlay={overigMenuItems} placement="bottomLeft">
-              <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                Overig
-              </a>
-            </Dropdown>
-          </li>
-          {/* Filters Link (matching kinky.nl) */}
-          <li key="filters">
-            <Link href="/search">
+          {/* Login - only show if not logged in */}
+          {!loggedIn && (
+            <li key="login">
+              <Link href="/auth/login">
+                <a>
+                  <span className={this.checkActiveMenu('/auth/login') ? 'active' : ''}>
+                    Login
+                  </span>
+                </a>
+              </Link>
+            </li>
+          )}
+          {/* Registreren - only show if not logged in */}
+          {!loggedIn && (
+            <li key="registreren">
+              <Link href="/auth/user-register">
+                <a>
+                  <span className={this.checkActiveMenu('/auth/user-register') ? 'active' : ''}>
+                    Registreren
+                  </span>
+                </a>
+              </Link>
+            </li>
+          )}
+          {/* Support */}
+          <li key="support">
+            <Link href="/hulp-en-ondersteuning">
               <a>
-                <span className={this.checkActiveMenu('/search') ? 'active' : ''}>
-                  Filters
+                <span className={this.checkActiveMenu('/hulp-en-ondersteuning') ? 'active' : ''}>
+                  Support
                 </span>
               </a>
             </Link>
