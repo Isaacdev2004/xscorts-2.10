@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { PureComponent } from 'react';
 import {
-  Layout, Button
+  Layout, Button, Row, Col
 } from 'antd';
 import { connect } from 'react-redux';
 import { PerformersGrid } from '@components/performer';
@@ -13,6 +13,8 @@ import './index.less';
 import storeHolder from '@lib/storeHolder';
 import SearchFilter from '@components/filter/search-filter';
 import SeoMetaHead from '@components/common/seo-meta-head';
+import QuickLinksSidebar from '@components/common/quick-links-sidebar';
+import TrendingVideos from '@components/common/trending-videos';
 
 interface IProps {
   ui: IUIConfig;
@@ -92,32 +94,55 @@ class HomePage extends PureComponent<IProps> {
         />
         <Layout className="home-page-layout">
           <div className="home-page">
-            <div>
-              <div className="main-container">
-                {topBanners && topBanners.length > 0 && (
-                  <div className="banner">
-                    <Banner banners={topBanners} autoplay arrows={false} dots />
-                  </div>
-                )}
-                <div className="filter-switch">
-                  <Button
-                    className="btn btn-outline-primary"
-                    onClick={() => this.setState({
-                      openFilter: !openFilter
-                    })}
-                  >
-                    Filter
-                  </Button>
+            <div className="main-container">
+              {topBanners && topBanners.length > 0 && (
+                <div className="banner">
+                  <Banner banners={topBanners} autoplay arrows={false} dots />
                 </div>
-                {openFilter && <SearchFilter />}
-                <PerformersGrid performers={performers} loading={fetching} />
-
-                {bottomBanners && bottomBanners.length > 0 && (
-                  <div className="banner">
-                    <Banner banners={bottomBanners} autoplay arrows={false} dots />
-                  </div>
-                )}
+              )}
+              
+              <div className="home-content-header">
+                <div className="header-left">
+                  <h2 className="section-title">Alle advertenties</h2>
+                </div>
+                <div className="header-right">
+                  <h2 className="section-title">Trending video's</h2>
+                </div>
               </div>
+
+              <Row gutter={[16, 16]} className="home-content-row">
+                {/* Left Sidebar - Quick Links */}
+                <Col xs={24} sm={24} md={6} lg={5} xl={4} className="home-sidebar-left">
+                  <QuickLinksSidebar />
+                </Col>
+
+                {/* Middle - Performers Grid */}
+                <Col xs={24} sm={24} md={12} lg={14} xl={16} className="home-content-main">
+                  <div className="filter-switch">
+                    <Button
+                      className="btn btn-outline-primary"
+                      onClick={() => this.setState({
+                        openFilter: !openFilter
+                      })}
+                    >
+                      Filter
+                    </Button>
+                  </div>
+                  {openFilter && <SearchFilter />}
+                  <PerformersGrid performers={performers} loading={fetching} />
+                </Col>
+
+                {/* Right Sidebar - Trending Videos */}
+                <Col xs={24} sm={24} md={6} lg={5} xl={4} className="home-sidebar-right">
+                  <TrendingVideos limit={5} />
+                </Col>
+              </Row>
+
+              {bottomBanners && bottomBanners.length > 0 && (
+                <div className="banner">
+                  <Banner banners={bottomBanners} autoplay arrows={false} dots />
+                </div>
+              )}
             </div>
           </div>
         </Layout>
