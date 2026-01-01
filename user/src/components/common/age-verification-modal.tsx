@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Modal, Switch, Button } from 'antd';
+import { Modal, Checkbox, Button } from 'antd';
 import { cookieService } from '@services/index';
 import './age-verification-modal.less';
 
@@ -11,49 +11,80 @@ interface IProps {
 interface IState {
   ageConfirmed: boolean;
   termsConfirmed: boolean;
-  privacyConfirmed: boolean;
   cookieConfirmed: boolean;
   canProceed: boolean;
+  language: string;
 }
+
+// Translation object - can be expanded later
+const translations: any = {
+  nl: {
+    title: 'Belangrijk – lees dit voordat je verdergaat',
+    intro1: 'Justlust.nl is uitsluitend toegankelijk voor bezoekers van 18 jaar en ouder. Door deze website te betreden bevestig je dat je de wettelijke minimumleeftijd hebt bereikt en dat je vrijwillig kennisneemt van expliciete content.',
+    intro2: 'Bij gebruik van deze website ga je akkoord met onze algemene voorwaarden en privacyverklaring. Wij maken gebruik van cookies om de website goed te laten functioneren, inzicht te krijgen in het gebruik en relevante advertenties te tonen. Je kunt je cookievoorkeuren op ieder moment aanpassen via Mijn instellingen.',
+    consentIntro: 'Om toegang te krijgen tot de website vragen wij je te bevestigen dat:',
+    ageLabel: 'Je 18 jaar of ouder bent',
+    termsLabel: 'Je akkoord gaat met de algemene voorwaarden en de privacyverklaring',
+    cookieLabel: 'Je kennis hebt genomen van het cookiebeleid en je cookievoorkeuren accepteert of aanpast',
+    warning: 'Indien je niet akkoord gaat of jonger bent dan 18 jaar, dien je deze website te verlaten.',
+    buttonText: 'Naar website'
+  },
+  en: {
+    title: 'Important – read this before you continue',
+    intro1: 'Justlust.nl is only accessible to visitors aged 18 and over. By entering this website, you confirm that you have reached the legal minimum age and that you voluntarily view explicit content.',
+    intro2: 'By using this website, you agree to our terms and conditions and privacy statement. We use cookies to make the website function properly, gain insight into usage and show relevant advertisements. You can adjust your cookie preferences at any time via My settings.',
+    consentIntro: 'To gain access to the website, we ask you to confirm that:',
+    ageLabel: 'You are 18 years or older',
+    termsLabel: 'You agree to the terms and conditions and the privacy statement',
+    cookieLabel: 'You have read the cookie policy and accept or adjust your cookie preferences',
+    warning: 'If you do not agree or are under 18 years of age, you must leave this website.',
+    buttonText: 'To website'
+  }
+};
 
 class AgeVerificationModal extends PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
+    // Get saved language preference or default to Dutch
+    const savedLang = cookieService.getCookie('preferred_language') || 'nl';
     this.state = {
       ageConfirmed: false,
       termsConfirmed: false,
-      privacyConfirmed: false,
       cookieConfirmed: false,
-      canProceed: false
+      canProceed: false,
+      language: savedLang
     };
   }
 
-  handleAgeToggle = (checked: boolean) => {
-    this.setState({ ageConfirmed: checked }, this.checkCanProceed);
+  handleAgeChange = (e: any) => {
+    this.setState({ ageConfirmed: e.target.checked }, this.checkCanProceed);
   };
 
-  handleTermsToggle = (checked: boolean) => {
-    this.setState({ termsConfirmed: checked }, this.checkCanProceed);
+  handleTermsChange = (e: any) => {
+    this.setState({ termsConfirmed: e.target.checked }, this.checkCanProceed);
   };
 
-  handlePrivacyToggle = (checked: boolean) => {
-    this.setState({ privacyConfirmed: checked }, this.checkCanProceed);
+  handleCookieChange = (e: any) => {
+    this.setState({ cookieConfirmed: e.target.checked }, this.checkCanProceed);
   };
 
-  handleCookieToggle = (checked: boolean) => {
-    this.setState({ cookieConfirmed: checked }, this.checkCanProceed);
+  handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLang = e.target.value;
+    this.setState({ language: newLang });
+    // Save language preference
+    cookieService.setCookie('preferred_language', newLang, 30 * 24 * 60);
   };
 
   checkCanProceed = () => {
-    const { ageConfirmed, termsConfirmed, privacyConfirmed, cookieConfirmed } = this.state;
-    const canProceed = ageConfirmed && termsConfirmed && privacyConfirmed && cookieConfirmed;
+    const { ageConfirmed, termsConfirmed, cookieConfirmed } = this.state;
+    const canProceed = ageConfirmed && termsConfirmed && cookieConfirmed;
     this.setState({ canProceed });
   };
 
   handleConfirm = () => {
-    const { ageConfirmed, termsConfirmed, privacyConfirmed, cookieConfirmed } = this.state;
+    const { ageConfirmed, termsConfirmed, cookieConfirmed } = this.state;
     
-    if (ageConfirmed && termsConfirmed && privacyConfirmed && cookieConfirmed) {
+    if (ageConfirmed && termsConfirmed && cookieConfirmed) {
       // Set cookies for 30 days (30 * 24 * 60 minutes)
       cookieService.setCookie('confirm_adult', 'true', 30 * 24 * 60);
       cookieService.setCookie('confirm_privacy', 'true', 30 * 24 * 60);
@@ -67,7 +98,8 @@ class AgeVerificationModal extends PureComponent<IProps, IState> {
 
   render() {
     const { visible } = this.props;
-    const { ageConfirmed, termsConfirmed, privacyConfirmed, cookieConfirmed, canProceed } = this.state;
+    const { ageConfirmed, termsConfirmed, cookieConfirmed, canProceed, language } = this.state;
+    const t = translations[language] || translations.nl; // Default to Dutch if translation not found
 
     return (
       <Modal
@@ -75,74 +107,67 @@ class AgeVerificationModal extends PureComponent<IProps, IState> {
         closable={false}
         maskClosable={false}
         footer={null}
-        width={600}
+        width={700}
         className="age-verification-modal"
         centered
       >
         <div className="age-verification-content">
           <div className="modal-header">
-            <h2>Important Before You Start!</h2>
+            <h2>{t.title}</h2>
             <div className="language-selector">
-              <span>🇬🇧</span>
-              <select className="lang-dropdown">
-                <option value="en">English</option>
-                <option value="nl">Nederlands</option>
-                <option value="de">Deutsch</option>
-                <option value="fr">Français</option>
+              <select 
+                className="lang-dropdown" 
+                value={language}
+                onChange={this.handleLanguageChange}
+              >
+                <option value="nl">🇳🇱 Nederlands</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="fr">🇫🇷 Français</option>
               </select>
             </div>
           </div>
 
           <div className="modal-body">
             <div className="info-text">
-              <p>
-                <strong>XScorts is only intended for persons 18 years and older.</strong> Every visitor must agree to the 
-                General Terms and Conditions and the Privacy Policy. Cookie preferences can be saved in 'My Settings'.
-              </p>
-              <p>
-                XScorts uses functional and analytical cookies for website optimization and statistics. 
-                In addition, marketing cookies are used to display advertisements. You can manage and save your 
-                cookie preferences via 'My Settings'. The Cookie statement describes how you can adjust your cookie preferences.
-              </p>
+              <p>{t.intro1}</p>
+              <p>{t.intro2}</p>
             </div>
 
             <div className="consent-section">
-              <p className="consent-intro">
-                Before you continue, we want to know the following from you:
-              </p>
+              <p className="consent-intro">{t.consentIntro}</p>
 
               <div className="consent-item">
-                <div className="consent-label">
-                  <span>I declare to be 18 years or older</span>
-                </div>
-                <Switch
+                <Checkbox
                   checked={ageConfirmed}
-                  onChange={this.handleAgeToggle}
-                  className="consent-switch"
-                />
+                  onChange={this.handleAgeChange}
+                  className="consent-checkbox"
+                >
+                  <span className="consent-label-text">{t.ageLabel}</span>
+                </Checkbox>
               </div>
 
               <div className="consent-item">
-                <div className="consent-label">
-                  <span>I agree with the General Terms and Conditions and Privacy Policy.</span>
-                </div>
-                <Switch
+                <Checkbox
                   checked={termsConfirmed}
-                  onChange={this.handleTermsToggle}
-                  className="consent-switch"
-                />
+                  onChange={this.handleTermsChange}
+                  className="consent-checkbox"
+                >
+                  <span className="consent-label-text">{t.termsLabel}</span>
+                </Checkbox>
               </div>
 
               <div className="consent-item">
-                <div className="consent-label">
-                  <span>I agree with the Cookie statement and accept cookies according to My settings</span>
-                </div>
-                <Switch
+                <Checkbox
                   checked={cookieConfirmed}
-                  onChange={this.handleCookieToggle}
-                  className="consent-switch"
-                />
+                  onChange={this.handleCookieChange}
+                  className="consent-checkbox"
+                >
+                  <span className="consent-label-text">{t.cookieLabel}</span>
+                </Checkbox>
               </div>
+
+              <p className="warning-text">{t.warning}</p>
             </div>
           </div>
 
@@ -154,7 +179,7 @@ class AgeVerificationModal extends PureComponent<IProps, IState> {
               disabled={!canProceed}
               className="proceed-button"
             >
-              Continue to Website
+              {t.buttonText}
             </Button>
           </div>
         </div>
