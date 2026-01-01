@@ -58,13 +58,14 @@ class PrimaryLayout extends PureComponent<DefaultProps, IState> {
   }
 
   checkAgeVerification = () => {
-    // Check if user has confirmed age, privacy, and terms
+    // Check if user has confirmed age, privacy, terms, and cookies
     const confirmAdult = cookieService.checkCookie('confirm_adult');
     const confirmPrivacy = cookieService.checkCookie('confirm_privacy');
     const confirmTerms = cookieService.checkCookie('confirm_terms');
+    const confirmCookies = cookieService.checkCookie('confirm_cookies');
     
     // Show modal if any confirmation is missing
-    if (!confirmAdult || !confirmPrivacy || !confirmTerms) {
+    if (!confirmAdult || !confirmPrivacy || !confirmTerms || !confirmCookies) {
       this.setState({ showAgeVerification: true });
     }
   };

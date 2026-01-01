@@ -1,163 +1,183 @@
-@import '../../../../style/vars';
-
 .age-verification-modal {
   .ant-modal-content {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    border: 2px solid @primary-color;
-    box-shadow: 0 0 20px rgba(238, 189, 34, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   .ant-modal-body {
-    padding: 30px;
+    padding: 0;
   }
 
   .age-verification-content {
-    color: @white;
+    .modal-header {
+      background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+      color: white;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-    .modal-title {
-      color: @primary-color;
-      font-size: 24px;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(238, 189, 34, 0.5);
+      h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+      }
+
+      .language-selector {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .lang-dropdown {
+          background: rgba(255, 255, 255, 0.2);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          color: white;
+          padding: 4px 8px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+
+          option {
+            background: #d32f2f;
+            color: white;
+          }
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.3);
+          }
+        }
+      }
     }
 
-    .modal-warning {
-      background: rgba(238, 189, 34, 0.1);
-      border: 1px solid @primary-color;
-      border-radius: 4px;
-      padding: 15px;
-      margin-bottom: 25px;
+    .modal-body {
+      padding: 24px;
+      background: white;
 
-      p {
-        color: @white;
-        margin: 0;
+      .info-text {
+        margin-bottom: 24px;
+        color: #333;
         line-height: 1.6;
 
-        strong {
-          color: @primary-color;
+        p {
+          margin-bottom: 12px;
+          font-size: 14px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          strong {
+            color: #d32f2f;
+            font-weight: 600;
+          }
         }
       }
-    }
 
-    .modal-checkboxes {
-      margin-bottom: 25px;
+      .consent-section {
+        .consent-intro {
+          font-weight: 600;
+          margin-bottom: 16px;
+          color: #333;
+          font-size: 14px;
+        }
 
-      .checkbox-item {
-        margin-bottom: 15px;
-
-        .ant-checkbox-wrapper {
+        .consent-item {
           display: flex;
-          align-items: flex-start;
-          color: @white;
+          justify-content: space-between;
+          align-items: center;
+          padding: 12px 0;
+          border-bottom: 1px solid #f0f0f0;
 
-          .ant-checkbox {
-            .ant-checkbox-inner {
-              border-color: @primary-color;
-              background-color: transparent;
-
-              &:after {
-                border-color: @primary-color;
-              }
-            }
-
-            &.ant-checkbox-checked {
-              .ant-checkbox-inner {
-                background-color: @primary-color;
-                border-color: @primary-color;
-              }
-            }
+          &:last-child {
+            border-bottom: none;
           }
 
-          .checkbox-label {
-            color: @white;
-            line-height: 1.6;
-            margin-left: 8px;
+          .consent-label {
+            flex: 1;
+            padding-right: 16px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+          }
 
-            .link-neon {
-              color: @primary-color;
-              text-decoration: none;
-              font-weight: 600;
-              transition: all 0.3s;
-              text-shadow: 0 0 5px rgba(238, 189, 34, 0.3);
-
-              &:hover {
-                color: @secondary-color;
-                text-shadow: 0 0 10px rgba(232, 196, 0, 0.6);
-                text-decoration: underline;
-              }
-            }
+          .consent-switch {
+            flex-shrink: 0;
           }
         }
       }
     }
 
-    .modal-actions {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
+    .modal-footer {
+      padding: 16px 24px;
+      background: #fafafa;
+      border-top: 1px solid #f0f0f0;
+      text-align: right;
 
-      .btn-neon-primary {
-        background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
-        border: none;
-        color: @black;
-        font-weight: 700;
-        text-transform: uppercase;
-        box-shadow: 0 0 15px rgba(238, 189, 34, 0.4);
-        transition: all 0.3s;
-
-        &:hover:not(:disabled) {
-          background: linear-gradient(135deg, @secondary-color 0%, @primary-color 100%);
-          box-shadow: 0 0 25px rgba(238, 189, 34, 0.6);
-          transform: translateY(-2px);
-        }
+      .proceed-button {
+        min-width: 160px;
+        height: 40px;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 4px;
 
         &:disabled {
           opacity: 0.5;
           cursor: not-allowed;
         }
       }
-
-      .btn-neon-secondary {
-        background: transparent;
-        border: 2px solid @primary-color;
-        color: @primary-color;
-        font-weight: 600;
-        transition: all 0.3s;
-
-        &:hover {
-          background: rgba(238, 189, 34, 0.1);
-          border-color: @secondary-color;
-          color: @secondary-color;
-          box-shadow: 0 0 15px rgba(238, 189, 34, 0.3);
-        }
-      }
     }
   }
 }
 
-// Mobile responsive
+// Overlay styling
+.age-verification-modal + .ant-modal-mask {
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
+}
+
+// Responsive design
 @media (max-width: 768px) {
   .age-verification-modal {
     .ant-modal {
-      width: 90% !important;
+      width: 95% !important;
       max-width: 500px;
     }
 
     .age-verification-content {
-      .modal-title {
-        font-size: 20px;
+      .modal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+
+        .language-selector {
+          width: 100%;
+        }
       }
 
-      .modal-actions {
-        flex-direction: column;
+      .modal-body {
+        padding: 20px;
 
-        .ant-btn {
+        .consent-section {
+          .consent-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+
+            .consent-label {
+              padding-right: 0;
+            }
+          }
+        }
+      }
+
+      .modal-footer {
+        text-align: center;
+
+        .proceed-button {
           width: 100%;
         }
       }
     }
   }
 }
-
