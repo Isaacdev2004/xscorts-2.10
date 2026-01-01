@@ -79,15 +79,7 @@ const Footer = ({ menus = [], loggedIn = false, ui = {} }: IProps) => {
     );
   };
 
-  const footerMenus = [
-    getMenus('footer1'),
-    getMenus('footer2'),
-    getMenus('footer3')
-  ].filter((m) => !!m.length);
-
-  // Quicklinks section (left side) - matching kinky.nl exact order and items
-  // Using correct gender values: female, male, transgender
-  // typeDate parameters will be passed to search (backend can handle them)
+  // Quicklinks section (left side)
   const quickLinks = [
     { title: 'Vrouwen', path: '/search?gender=female' },
     { title: 'Mannen', path: '/search?gender=male' },
@@ -103,10 +95,36 @@ const Footer = ({ menus = [], loggedIn = false, ui = {} }: IProps) => {
     { title: 'Massagesalon', path: '/search?service=massagesalon' }
   ];
 
+  // Algemeen section links
+  const algemeenLinks = [
+    { title: 'Veiligheid & Info', path: '/page/veiligheid-info' },
+    { title: 'Wie we zijn', path: '/page/wie-we-zijn' },
+    { title: 'Advertentieopties', path: '/page/advertentieopties' },
+    { title: 'U.S.C. 2257 Naleving (Compliance)', path: '/page/usc-2257-compliance' },
+    { title: 'Auteursrechtschending', path: '/page/auteursrechtschending' }
+  ];
+
+  // Contact Ons section links
+  const contactLinks = [
+    { title: 'Support', path: '/hulp-en-ondersteuning' },
+    { title: 'Hulp & Ondersteuning', path: '/hulp-en-ondersteuning' },
+    { title: 'Misbruik melden', path: '/page/misbruik-melden' },
+    { title: 'Cookiebeleid', path: '/page/cookiebeleid' },
+    { title: 'Privacyverklaring', path: '/page/privacy-policy' },
+    { title: 'Servicevoorwaarden', path: '/page/terms-of-service' },
+    { title: 'Terugbetalingsbeleid', path: '/page/terugbetalingsbeleid' }
+  ];
+
+  // Socials section links
+  const socialLinks = [
+    { title: 'X', path: 'https://x.com', icon: 'twitter', external: true },
+    { title: 'Reddit', path: 'https://reddit.com', icon: 'default', external: true }
+  ];
+
   return (
     <div className="main-footer">
       <div className="main-container">
-        <Row className="content">
+        <Row className="content" gutter={[24, 24]}>
           {/* Quicklinks Section (Left) */}
           <Col lg={6} md={8} sm={12} xs={12} key="quicklinks">
             <ul>
@@ -124,24 +142,62 @@ const Footer = ({ menus = [], loggedIn = false, ui = {} }: IProps) => {
               ))}
             </ul>
           </Col>
-          {footerMenus.map((subMenus) => (
-            <Col lg={6} md={8} sm={12} xs={12} key={Math.random()}>
-              {renderSubMenus(subMenus)}
-            </Col>
-          ))}
-          {/* Hulp en Ondersteuning Section */}
-          <Col lg={6} md={8} sm={12} xs={12} key="support">
+
+          {/* Algemeen Section */}
+          <Col lg={6} md={8} sm={12} xs={12} key="algemeen">
             <ul>
               <li>
-                <h2 className="footer-heading">Hulp en Ondersteuning</h2>
+                <h2 className="footer-heading">Algemeen</h2>
               </li>
+              {algemeenLinks.map((link) => (
+                <li key={link.path}>
+                  <RightOutlined />
+                  {' '}
+                  <Link href={link.path}>
+                    <a>{link.title}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Col>
+
+          {/* Contact Ons Section */}
+          <Col lg={6} md={8} sm={12} xs={12} key="contact">
+            <ul>
               <li>
-                <RightOutlined />
-                {' '}
-                <Link href="/hulp-en-ondersteuning">
-                  <a>Hulp en Ondersteuning</a>
-                </Link>
+                <h2 className="footer-heading">Contact Ons</h2>
               </li>
+              {contactLinks.map((link) => (
+                <li key={link.path}>
+                  <RightOutlined />
+                  {' '}
+                  <Link href={link.path}>
+                    <a>{link.title}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Col>
+
+          {/* Socials Section */}
+          <Col lg={6} md={8} sm={12} xs={12} key="socials">
+            <ul>
+              <li>
+                <h2 className="footer-heading">Socials</h2>
+              </li>
+              {socialLinks.map((link) => (
+                <li key={link.path}>
+                  <RightOutlined />
+                  {' '}
+                  {link.external ? (
+                    <a href={link.path} target="_blank" rel="noreferrer">{link.title}</a>
+                  ) : (
+                    <Link href={link.path}>
+                      <a>{link.title}</a>
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </Col>
         </Row>
@@ -161,23 +217,6 @@ const Footer = ({ menus = [], loggedIn = false, ui = {} }: IProps) => {
           </span>
         </div>
       )}
-      {/* Privacy and Support buttons at bottom */}
-      <div className="footer-bottom-buttons">
-        <div className="main-container">
-          <Row justify="center" gutter={[16, 16]}>
-            <Col>
-              <Link href="/page/privacy-policy">
-                <a className="footer-bottom-link">Privacy</a>
-              </Link>
-            </Col>
-            <Col>
-              <Link href="/hulp-en-ondersteuning">
-                <a className="footer-bottom-link">Support</a>
-              </Link>
-            </Col>
-          </Row>
-        </div>
-      </div>
     </div>
   );
 };
