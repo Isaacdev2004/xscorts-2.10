@@ -130,3 +130,119 @@ a {
   }
 }
 
+// Navigation menu active states with neon glow
+.nav-links {
+  .active {
+    color: @primary-color !important;
+    border-bottom-color: @primary-color !important;
+    text-shadow: 0 0 8px rgba(238, 189, 34, 0.6);
+    font-weight: 600;
+  }
+
+  a:hover span {
+    color: @primary-color;
+    text-shadow: 0 0 8px rgba(238, 189, 34, 0.5);
+    transition: all 0.3s ease;
+  }
+}
+
+// All buttons should use neon styling
+button,
+.ant-btn:not(.ant-btn-link):not(.ant-btn-text) {
+  &:not(:disabled) {
+    background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+    border: none;
+    color: @black;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(238, 189, 34, 0.4);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, @secondary-color 0%, @primary-color 100%);
+      box-shadow: 0 0 25px rgba(238, 189, 34, 0.6);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 0 15px rgba(238, 189, 34, 0.4);
+    }
+  }
+}
+
+// Links should have neon glow on hover
+a:not(.ant-btn) {
+  color: @menu-text-color;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: @primary-color;
+    text-shadow: 0 0 5px rgba(238, 189, 34, 0.4);
+  }
+}
+
+// Footer links with neon
+.main-footer {
+  a {
+    color: @menu-text-color;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: @primary-color;
+      text-shadow: 0 0 5px rgba(238, 189, 34, 0.4);
+    }
+  }
+}
+
+// Dropdown menus with neon accents
+.ant-dropdown-menu {
+  .ant-dropdown-menu-item {
+    &:hover {
+      background-color: rgba(238, 189, 34, 0.1);
+      color: @primary-color;
+    }
+
+    &.ant-dropdown-menu-item-selected {
+      background-color: rgba(238, 189, 34, 0.2);
+      color: @primary-color;
+      font-weight: 600;
+    }
+  }
+}
+
+// Form inputs focus states with neon
+.ant-input:focus,
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused {
+  border-color: @primary-color !important;
+  box-shadow: 0 0 10px rgba(238, 189, 34, 0.3) !important;
+}
+
+// Checkboxes and radio buttons
+.ant-checkbox-checked .ant-checkbox-inner,
+.ant-radio-checked .ant-radio-inner {
+  background-color: @primary-color;
+  border-color: @primary-color;
+  box-shadow: 0 0 5px rgba(238, 189, 34, 0.4);
+}
+
+// Badges with neon
+.ant-badge-count {
+  background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+  box-shadow: 0 0 10px rgba(238, 189, 34, 0.5);
+}
+
+// Tabs with neon
+.ant-tabs-tab-active {
+  .ant-tabs-tab-btn {
+    color: @primary-color;
+    text-shadow: 0 0 5px rgba(238, 189, 34, 0.4);
+    font-weight: 600;
+  }
+}
+
+.ant-tabs-ink-bar {
+  background: linear-gradient(90deg, @primary-color 0%, @secondary-color 100%);
+  box-shadow: 0 0 10px rgba(238, 189, 34, 0.5);
+}
+

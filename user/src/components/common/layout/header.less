@@ -95,9 +95,11 @@
 
         a {
           color: @menu-text-color;
+          transition: all 0.3s ease;
 
           :hover {
             color: @primary-color;
+            text-shadow: 0 0 8px rgba(238, 189, 34, 0.5);
           }
         }
 
@@ -120,8 +122,10 @@
       }
 
       .active {
-        color: @white;
-        border-bottom: 2px solid;
+        color: @primary-color !important;
+        border-bottom: 2px solid @primary-color;
+        text-shadow: 0 0 8px rgba(238, 189, 34, 0.6);
+        font-weight: 600;
       }
     }
     .right-header {
@@ -154,9 +158,11 @@
 
         a {
           color: @menu-text-color;
+          transition: all 0.3s ease;
 
           :hover {
             color: @primary-color;
+            text-shadow: 0 0 8px rgba(238, 189, 34, 0.5);
           }
         }
 
@@ -247,8 +253,10 @@
       }
 
       .active {
-        color: @white;
-        border-bottom: 2px solid;
+        color: @primary-color !important;
+        border-bottom: 2px solid @primary-color;
+        text-shadow: 0 0 8px rgba(238, 189, 34, 0.6);
+        font-weight: 600;
       }
     }
     @media (max-width: @mobile-screen) {
